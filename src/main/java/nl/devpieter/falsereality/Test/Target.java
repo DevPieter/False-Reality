@@ -1,4 +1,4 @@
-package nl.devpieter.falsereality;
+package nl.devpieter.falsereality.Test;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderPhase;
@@ -9,7 +9,7 @@ public class Target extends RenderPhase {
         super(string, runnable, runnable2);
     }
 
-    public static final nl.devpieter.falsereality.Target WEATHER_TARGET = new nl.devpieter.falsereality.Target("weather_target", () -> {
+    public static final nl.devpieter.falsereality.Test.Target WEATHER_TARGET = new nl.devpieter.falsereality.Test.Target("weather_target", () -> {
         if (MinecraftClient.isFabulousGraphicsOrBetter()) {
             MinecraftClient.getInstance().worldRenderer.getWeatherFramebuffer().beginWrite(false);
         }
