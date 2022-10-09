@@ -11,6 +11,9 @@ import org.lwjgl.glfw.GLFW;
 
 public class FalseReality implements ModInitializer {
 
+    //TODO Translate
+    public static final KeyBinding SCROLL_THROUGH_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("Scroll through time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, "category.falsereality"));
+
     @Override
     public void onInitialize() {
 
