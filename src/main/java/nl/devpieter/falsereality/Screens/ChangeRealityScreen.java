@@ -6,8 +6,7 @@ import net.minecraft.text.TranslatableText;
 public class ChangeRealityScreen extends Screen {
 
     protected ChangeRealityScreen() {
-        super(new TranslatableText("Change Reality"));//TODO Translate
+        super(new TranslatableText("screen.falsereality.change_reality"));
     }
-
 
 }

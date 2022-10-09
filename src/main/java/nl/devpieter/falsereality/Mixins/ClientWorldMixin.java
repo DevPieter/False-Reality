@@ -6,6 +6,7 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import nl.devpieter.falsereality.FalseReality;
 import nl.devpieter.falsereality.Settings.Config;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -29,19 +30,17 @@ public abstract class ClientWorldMixin extends World {
 
     @Inject(at = @At("HEAD"), method = "setTimeOfDay", cancellable = true)
     public void onSetTimeOfDay(long timeOfDay, CallbackInfo callbackInfo) {
+        if (FalseReality.SYNC_TIME.wasPressed()) Config.CustomTime = timeOfDay;
         if (!Config.CustomTimeEnabled) return;
 
-        if (Config.TimeSpedUpEnabled) this.addCustomTime(Config.SpedUpBy);
-        else this.setCustomTime(Config.CustomTime);
+        if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;
+        if (Config.SpedUpBy < -250) Config.SpedUpBy = 250;
+        if (Config.TimeSpedUpEnabled) Config.CustomTime += Config.SpedUpBy;
+
+        if (Config.CustomTime > 24000) Config.CustomTime = 0;
+        if (Config.CustomTime < 0) Config.CustomTime = 24000;
+        this.clientWorldProperties.setTimeOfDay(Config.CustomTime);
 
         callbackInfo.cancel();
-    }
-
-    private void addCustomTime(long time) {
-        this.clientWorldProperties.setTimeOfDay(this.clientWorldProperties.getTimeOfDay() + time);
-    }
-
-    private void setCustomTime(long time) {
-        this.clientWorldProperties.setTimeOfDay(time);
     }
 }

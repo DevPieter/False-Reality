@@ -19,23 +19,9 @@ public class MouseMixin {
 
         boolean fast = Screen.hasControlDown();
 
-        if (Config.TimeSpedUpEnabled) this.changeSpedUpBy(MathHelper.lfloor(vertical * (fast ? 10 : 1)));
-        else this.changeCustomTime(MathHelper.floor(vertical * (fast ? 100 : 10)));
+        if (Config.TimeSpedUpEnabled) Config.SpedUpBy += MathHelper.lfloor(vertical * (fast ? 10 : 1));
+        else Config.CustomTime += MathHelper.lfloor(vertical * (fast ? 100 : 10));
 
         callbackInfo.cancel();
-    }
-
-    private void changeSpedUpBy(long by) {
-        Config.SpedUpBy += by;
-
-        if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;
-        if (Config.SpedUpBy < -250) Config.SpedUpBy = 250;
-    }
-
-    private void changeCustomTime(int time) {
-        Config.CustomTime += time;
-
-        if (Config.CustomTime > 24000) Config.CustomTime = 0;
-        if (Config.CustomTime < 0) Config.CustomTime = 24000;
     }
 }

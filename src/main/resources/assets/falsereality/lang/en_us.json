@@ -1,0 +1,12 @@
+{
+  "category.falsereality": "False Reality",
+  "screen.falsereality.change_reality": "Change Reality",
+  "key.falsereality.toggle_custom_time": "Toggle custom time",
+  "key.falsereality.toggle_sped_up_time": "Toggle sped-up time",
+  "key.falsereality.scroll_through_time": "Scroll through time",
+  "key.falsereality.sync_time": "Sync time",
+  "key.falsereality.time.day": "Day (preset)",
+  "key.falsereality.time_midnight": "Midnight (preset)",
+  "key.falsereality.time_night": "Night (preset)",
+  "key.falsereality.time_noon": "Noon (preset)"
+}
