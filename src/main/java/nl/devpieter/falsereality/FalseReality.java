@@ -12,35 +12,32 @@ import org.lwjgl.glfw.GLFW;
 public class FalseReality implements ModInitializer {
 
     //TODO Translate
-    public static final KeyBinding SCROLL_THROUGH_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("Scroll through time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, "category.falsereality"));
+    public static final KeyBinding TOGGLE_CUSTOM_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("Toggle custom time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, "category.falsereality"));
+    public static final KeyBinding TOGGLE_SPED_UP_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("Toggle sped-up time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F7, "category.falsereality"));
+    public static final KeyBinding SCROLL_THROUGH_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("Scroll through time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_ALT, "category.falsereality"));
+
+    /* TIME PRESETS */
+    public static final KeyBinding TIME_DAY = KeyBindingHelper.registerKeyBinding(new KeyBinding("Day (preset)", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+    public static final KeyBinding TIME_MIDNIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("Midnight (preset)", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+    public static final KeyBinding TIME_NIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("Night (preset)", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+    public static final KeyBinding TIME_NOON = KeyBindingHelper.registerKeyBinding(new KeyBinding("Noon (preset)", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
 
     @Override
     public void onInitialize() {
-
-        KeyBinding keyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding("test_1", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_N, "category.examplemod.test"));
-        KeyBinding keyBinding2 = KeyBindingHelper.registerKeyBinding(new KeyBinding("test_2", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_M, "category.examplemod.test"));
-
-        KeyBinding keyBindingPlus = KeyBindingHelper.registerKeyBinding(new KeyBinding("test_3", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_UP, "category.examplemod.test"));
-        KeyBinding keyBindingMinus = KeyBindingHelper.registerKeyBinding(new KeyBinding("test_4", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_DOWN, "category.examplemod.test"));
-
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (keyBinding.wasPressed()) {
+            if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
-                client.player.sendMessage(new LiteralText("Custom Time Enabled: " + Config.CustomTimeEnabled), true);
+                client.player.sendMessage(new LiteralText(String.format("Custom Time %s", Config.CustomTimeEnabled ? "Enabled" : "Disabled")), true);
             }
-            if (keyBinding2.wasPressed()) {
+            if (TOGGLE_SPED_UP_TIME.wasPressed()) {
                 Config.TimeSpedUpEnabled = !Config.TimeSpedUpEnabled;
-                client.player.sendMessage(new LiteralText("Time Sped Up Enabled: " + Config.TimeSpedUpEnabled), true);
+                client.player.sendMessage(new LiteralText(String.format("Time Sped Up %s", Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")), true);
             }
 
-            if (keyBindingPlus.wasPressed()) {
-                Config.SpedUpBy++;
-                client.player.sendMessage(new LiteralText("Time Sped Up By: " + Config.SpedUpBy), true);
-            }
-            if (keyBindingMinus.isPressed()) {
-                Config.SpedUpBy--;
-                client.player.sendMessage(new LiteralText("Time Sped Up By: " + Config.SpedUpBy), true);
-            }
+            if (TIME_DAY.wasPressed()) Config.CustomTime = 1000;
+            if (TIME_MIDNIGHT.wasPressed()) Config.CustomTime = 18000;
+            if (TIME_NIGHT.wasPressed()) Config.CustomTime = 13000;
+            if (TIME_NOON.wasPressed()) Config.CustomTime = 6000;
         });
     }
 }
