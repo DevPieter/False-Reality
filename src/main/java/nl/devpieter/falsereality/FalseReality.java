@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
+import net.minecraft.text.LiteralText;
 import nl.devpieter.falsereality.Settings.Config;
 import org.lwjgl.glfw.GLFW;
 
@@ -28,11 +28,11 @@ public class FalseReality implements ModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
-                client.player.sendMessage(Text.literal(String.format("DEBUG: Custom Time %s", Config.CustomTimeEnabled ? "Enabled" : "Disabled")), true);
+                client.player.sendMessage(new LiteralText(String.format("DEBUG: Custom Time %s", Config.CustomTimeEnabled ? "Enabled" : "Disabled")), true);
             }
             if (TOGGLE_SPED_UP_TIME.wasPressed()) {
                 Config.TimeSpedUpEnabled = !Config.TimeSpedUpEnabled;
-                client.player.sendMessage(Text.literal(String.format("DEBUG: Time Sped Up %s", Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")), true);
+                client.player.sendMessage(new LiteralText(String.format("DEBUG: Time Sped Up %s", Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")), true);
             }
 
             if (TIME_DAY.wasPressed()) Config.CustomTime = 1000;

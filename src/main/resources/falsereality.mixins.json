@@ -2,12 +2,13 @@
   "required": true,
   "minVersion": "0.8",
   "package": "nl.devpieter.falsereality.Mixins",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_16",
   "mixins": [
   ],
   "client": [
     "ClientWorldMixin",
-    "MouseMixin"
+    "MouseMixin",
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
