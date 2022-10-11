@@ -7,6 +7,7 @@ import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
 import nl.devpieter.falsereality.Settings.Config;
+import nl.devpieter.falsereality.Toasts.TestToast;
 import org.lwjgl.glfw.GLFW;
 
 public class FalseReality implements ModInitializer {
@@ -35,7 +36,7 @@ public class FalseReality implements ModInitializer {
                 client.player.sendMessage(new LiteralText(String.format("DEBUG: Time Sped Up %s", Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")), true);
             }
 
-            if (TIME_DAY.wasPressed()) Config.CustomTime = 1000;
+            if (TIME_DAY.wasPressed()) client.getToastManager().add(new TestToast());
             if (TIME_MIDNIGHT.wasPressed()) Config.CustomTime = 18000;
             if (TIME_NIGHT.wasPressed()) Config.CustomTime = 13000;
             if (TIME_NOON.wasPressed()) Config.CustomTime = 6000;
