@@ -27,6 +27,8 @@ public class FalseReality implements ModInitializer {
     @Override
     public void onInitialize() {//TODO: Add toast messages
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            if (client.player == null) return;
+            
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
                 client.player.sendMessage(new LiteralText(String.format("DEBUG: Custom Time %s", Config.CustomTimeEnabled ? "Enabled" : "Disabled")), true);
