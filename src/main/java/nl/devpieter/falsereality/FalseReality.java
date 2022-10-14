@@ -4,12 +4,10 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.toast.Toast;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.LiteralText;
 import nl.devpieter.falsereality.Settings.Config;
-import nl.devpieter.falsereality.Toasts.IToast;
 import nl.devpieter.falsereality.Toasts.Info.CustomTimeInfoToast;
+import nl.devpieter.falsereality.Toasts.Info.SpedUpTimeInfoToast;
 import org.lwjgl.glfw.GLFW;
 
 public class FalseReality implements ModInitializer {
@@ -37,6 +35,7 @@ public class FalseReality implements ModInitializer {
             }
             if (TOGGLE_SPED_UP_TIME.wasPressed()) {
                 Config.TimeSpedUpEnabled = !Config.TimeSpedUpEnabled;
+                client.getToastManager().add(new SpedUpTimeInfoToast());
                 //client.getToastManager().add(new InfoToast(new LiteralText("Sped Up Time"), new LiteralText(Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")));
             }
 

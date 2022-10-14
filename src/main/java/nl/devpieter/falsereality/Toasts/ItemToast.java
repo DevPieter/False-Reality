@@ -1,6 +1,5 @@
 package nl.devpieter.falsereality.Toasts;
 
-import net.minecraft.client.toast.RecipeToast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
