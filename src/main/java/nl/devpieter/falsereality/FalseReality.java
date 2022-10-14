@@ -3,13 +3,11 @@ package nl.devpieter.falsereality;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
 import nl.devpieter.falsereality.Settings.Config;
 import nl.devpieter.falsereality.Toasts.InfoToast;
-import nl.devpieter.falsereality.Toasts.TestToast;
 import org.lwjgl.glfw.GLFW;
 
 public class FalseReality implements ModInitializer {
