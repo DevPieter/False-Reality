@@ -3,10 +3,12 @@ package nl.devpieter.falsereality;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
 import nl.devpieter.falsereality.Settings.Config;
+import nl.devpieter.falsereality.Toasts.InfoToast;
 import nl.devpieter.falsereality.Toasts.TestToast;
 import org.lwjgl.glfw.GLFW;
 
@@ -28,17 +30,17 @@ public class FalseReality implements ModInitializer {
     public void onInitialize() {//TODO: Add toast messages
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
-            
+
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
-                client.player.sendMessage(new LiteralText(String.format("DEBUG: Custom Time %s", Config.CustomTimeEnabled ? "Enabled" : "Disabled")), true);
+                client.getToastManager().add(new InfoToast(new LiteralText("Custom Time"), new LiteralText(Config.CustomTimeEnabled ? "Enabled" : "Disabled")));
             }
             if (TOGGLE_SPED_UP_TIME.wasPressed()) {
                 Config.TimeSpedUpEnabled = !Config.TimeSpedUpEnabled;
-                client.player.sendMessage(new LiteralText(String.format("DEBUG: Time Sped Up %s", Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")), true);
+                client.getToastManager().add(new InfoToast(new LiteralText("Sped Up Time"), new LiteralText(Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")));
             }
 
-            if (TIME_DAY.wasPressed()) client.getToastManager().add(new TestToast());
+            if (TIME_DAY.wasPressed()) Config.CustomTime = 0;//TODO: Add time
             if (TIME_MIDNIGHT.wasPressed()) Config.CustomTime = 18000;
             if (TIME_NIGHT.wasPressed()) Config.CustomTime = 13000;
             if (TIME_NOON.wasPressed()) Config.CustomTime = 6000;
