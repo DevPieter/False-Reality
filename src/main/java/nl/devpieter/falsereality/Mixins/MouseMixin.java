@@ -19,7 +19,7 @@ public class MouseMixin {
 
         boolean fast = Screen.hasControlDown();
 
-        if (Config.TimeSpedUpEnabled) Config.SpedUpBy += MathHelper.lfloor(vertical * (fast ? 10 : 1));
+        if (Config.SpedUpTimeEnabled) Config.SpedUpBy += MathHelper.lfloor(vertical * (fast ? 10 : 1));
         else Config.CustomTime += MathHelper.lfloor(vertical * (fast ? 100 : 10));
 
         callbackInfo.cancel();

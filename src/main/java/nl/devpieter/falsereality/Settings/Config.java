@@ -5,6 +5,6 @@ public class Config {
     public static boolean CustomTimeEnabled;
     public static long CustomTime = 13000;
 
-    public static boolean TimeSpedUpEnabled;
+    public static boolean SpedUpTimeEnabled;
     public static long SpedUpBy = 15;
 }

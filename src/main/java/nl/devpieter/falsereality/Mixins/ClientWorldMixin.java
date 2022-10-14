@@ -35,7 +35,7 @@ public abstract class ClientWorldMixin extends World {
 
         if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;
         if (Config.SpedUpBy < -250) Config.SpedUpBy = 250;
-        if (Config.TimeSpedUpEnabled) Config.CustomTime += Config.SpedUpBy;
+        if (Config.SpedUpTimeEnabled) Config.CustomTime += Config.SpedUpBy;
 
         if (Config.CustomTime > 24000) Config.CustomTime = 0;
         if (Config.CustomTime < 0) Config.CustomTime = 24000;

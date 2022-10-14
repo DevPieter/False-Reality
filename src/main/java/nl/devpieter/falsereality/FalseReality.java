@@ -34,9 +34,8 @@ public class FalseReality implements ModInitializer {
                 client.getToastManager().add(new CustomTimeInfoToast());
             }
             if (TOGGLE_SPED_UP_TIME.wasPressed()) {
-                Config.TimeSpedUpEnabled = !Config.TimeSpedUpEnabled;
+                Config.SpedUpTimeEnabled = !Config.SpedUpTimeEnabled;
                 client.getToastManager().add(new SpedUpTimeInfoToast());
-                //client.getToastManager().add(new InfoToast(new LiteralText("Sped Up Time"), new LiteralText(Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")));
             }
 
             if (TIME_DAY.wasPressed()) Config.CustomTime = 0;//TODO: Add time
