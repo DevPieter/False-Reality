@@ -4,10 +4,12 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.toast.Toast;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.LiteralText;
 import nl.devpieter.falsereality.Settings.Config;
-import nl.devpieter.falsereality.Toasts.InfoToast;
+import nl.devpieter.falsereality.Toasts.IToast;
+import nl.devpieter.falsereality.Toasts.Info.CustomTimeInfoToast;
 import org.lwjgl.glfw.GLFW;
 
 public class FalseReality implements ModInitializer {
@@ -31,11 +33,11 @@ public class FalseReality implements ModInitializer {
 
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
-                client.getToastManager().add(new InfoToast(new LiteralText("Custom Time"), new LiteralText(Config.CustomTimeEnabled ? "Enabled" : "Disabled")));
+                client.getToastManager().add(new CustomTimeInfoToast());
             }
             if (TOGGLE_SPED_UP_TIME.wasPressed()) {
                 Config.TimeSpedUpEnabled = !Config.TimeSpedUpEnabled;
-                client.getToastManager().add(new InfoToast(new LiteralText("Sped Up Time"), new LiteralText(Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")));
+                //client.getToastManager().add(new InfoToast(new LiteralText("Sped Up Time"), new LiteralText(Config.TimeSpedUpEnabled ? "Enabled" : "Disabled")));
             }
 
             if (TIME_DAY.wasPressed()) Config.CustomTime = 0;//TODO: Add time

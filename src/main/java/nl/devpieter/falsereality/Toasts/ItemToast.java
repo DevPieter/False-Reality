@@ -1,5 +1,6 @@
 package nl.devpieter.falsereality.Toasts;
 
+import net.minecraft.client.toast.RecipeToast;
 import net.minecraft.client.toast.ToastManager;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
@@ -31,9 +32,7 @@ public abstract class ItemToast extends IToast {
     protected Visibility drawToast(MatrixStack matrices, ToastManager manager, long startTime) {
         manager.getGame().textRenderer.draw(matrices, this.getTitle(), 30.0F, 7.0F, this.getTitleColor().getRGB());
         manager.getGame().textRenderer.draw(matrices, this.getDescription(), 30.0F, 18.0F, this.getDescriptionColor().getRGB());
-
-        //TODO: Render item
-
+        manager.getGame().getItemRenderer().renderInGui(this.getItem(), 8, 8);
         return this.getDefaultShowProgress(startTime);
     }
 

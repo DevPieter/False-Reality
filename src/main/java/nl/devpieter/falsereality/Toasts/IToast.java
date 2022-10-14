@@ -21,6 +21,6 @@ public abstract class IToast implements Toast {
     protected abstract Visibility drawToast(MatrixStack matrices, ToastManager manager, long startTime);
 
     protected Visibility getDefaultShowProgress(long startTime) {
-        return startTime >= 5000L ? Visibility.HIDE : Visibility.SHOW;
+        return startTime >= 2000L ? Visibility.HIDE : Visibility.SHOW;
     }
 }
