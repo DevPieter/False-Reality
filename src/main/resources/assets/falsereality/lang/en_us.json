@@ -13,5 +13,8 @@
   "string.falsereality.disabled": "Disabled",
   "string.falsereality.custom_time": "Custom Time",
   "string.falsereality.sped_up_time": "Sped Up Time",
-  "string.falsereality.loaded_a_preset": "Loaded a preset"
+  "string.falsereality.loaded_a_preset": "Loaded a preset.",
+  "string.falsereality.sync": "Time synchronized.",
+  "string.falsereality.sync.successful": "Synced time to %s.",
+  "string.falsereality.sync.unsuccessful": "Failed to sync the time."
 }

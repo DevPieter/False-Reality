@@ -1,6 +1,7 @@
 package nl.devpieter.falsereality.Toasts;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.toast.Toast;
 import net.minecraft.client.toast.ToastManager;
@@ -22,5 +23,9 @@ public abstract class IToast implements Toast {
 
     protected Visibility getDefaultShowProgress(long startTime) {
         return startTime >= 2000L ? Visibility.HIDE : Visibility.SHOW;
+    }
+
+    public static void send(Toast toast) {
+        MinecraftClient.getInstance().getToastManager().add(toast);
     }
 }

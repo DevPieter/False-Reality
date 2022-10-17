@@ -8,6 +8,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import nl.devpieter.falsereality.FalseReality;
 import nl.devpieter.falsereality.Settings.Config;
+import nl.devpieter.falsereality.Toasts.IToast;
+import nl.devpieter.falsereality.Toasts.Info.TimeSyncedInfoToast;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,7 +32,10 @@ public abstract class ClientWorldMixin extends World {
 
     @Inject(at = @At("HEAD"), method = "setTimeOfDay", cancellable = true)
     public void onSetTimeOfDay(long timeOfDay, CallbackInfo callbackInfo) {
-        if (FalseReality.SYNC_TIME.wasPressed()) Config.CustomTime = timeOfDay;
+        if (FalseReality.SYNC_TIME.wasPressed()) {
+            Config.CustomTime = timeOfDay;
+            IToast.send(new TimeSyncedInfoToast(!Config.CustomTimeEnabled));
+        }
         if (!Config.CustomTimeEnabled) return;
 
         if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;

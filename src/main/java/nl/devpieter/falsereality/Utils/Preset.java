@@ -1,9 +1,9 @@
-package nl.devpieter.falsereality;
+package nl.devpieter.falsereality.Utils;
 
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import nl.devpieter.falsereality.Settings.Config;
+import nl.devpieter.falsereality.Toasts.IToast;
 import nl.devpieter.falsereality.Toasts.Info.PresetLoadedInfoToast;
 
 public enum Preset {
@@ -20,7 +20,7 @@ public enum Preset {
 
     public void load() {
         Config.CustomTime = this.time;
-        MinecraftClient.getInstance().getToastManager().add(new PresetLoadedInfoToast(this));
+        IToast.send(new PresetLoadedInfoToast(this));
     }
 
     public Text getName() {

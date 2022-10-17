@@ -6,8 +6,10 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import nl.devpieter.falsereality.Settings.Config;
+import nl.devpieter.falsereality.Toasts.IToast;
 import nl.devpieter.falsereality.Toasts.Info.CustomTimeInfoToast;
 import nl.devpieter.falsereality.Toasts.Info.SpedUpTimeInfoToast;
+import nl.devpieter.falsereality.Utils.Preset;
 import org.lwjgl.glfw.GLFW;
 
 public class FalseReality implements ModInitializer {
@@ -31,11 +33,11 @@ public class FalseReality implements ModInitializer {
 
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
-                client.getToastManager().add(new CustomTimeInfoToast());
+                IToast.send(new CustomTimeInfoToast());
             }
             if (TOGGLE_SPED_UP_TIME.wasPressed()) {
                 Config.SpedUpTimeEnabled = !Config.SpedUpTimeEnabled;
-                client.getToastManager().add(new SpedUpTimeInfoToast());
+                IToast.send(new SpedUpTimeInfoToast());
             }
 
             if (TIME_DAY.wasPressed()) Preset.DAY.load();

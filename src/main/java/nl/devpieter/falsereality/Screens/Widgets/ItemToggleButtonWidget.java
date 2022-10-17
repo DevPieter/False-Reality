@@ -1,4 +1,4 @@
-package nl.devpieter.falsereality.Widgets;
+package nl.devpieter.falsereality.Screens.Widgets;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
