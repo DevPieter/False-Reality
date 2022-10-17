@@ -5,8 +5,13 @@
   "key.falsereality.toggle_sped_up_time": "Toggle sped-up time",
   "key.falsereality.scroll_through_time": "Scroll through time",
   "key.falsereality.sync_time": "Sync time",
-  "key.falsereality.time.day": "Day (preset)",
-  "key.falsereality.time_midnight": "Midnight (preset)",
-  "key.falsereality.time_night": "Night (preset)",
-  "key.falsereality.time_noon": "Noon (preset)"
+  "key.falsereality.time.day": "Day",
+  "key.falsereality.time.midnight": "Midnight",
+  "key.falsereality.time.night": "Night",
+  "key.falsereality.time.noon": "Noon",
+  "string.falsereality.enabled": "Enabled",
+  "string.falsereality.disabled": "Disabled",
+  "string.falsereality.custom_time": "Custom Time",
+  "string.falsereality.sped_up_time": "Sped Up Time",
+  "string.falsereality.loaded_a_preset": "Loaded a preset"
 }

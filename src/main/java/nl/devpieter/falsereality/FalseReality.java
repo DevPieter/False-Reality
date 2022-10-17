@@ -20,12 +20,12 @@ public class FalseReality implements ModInitializer {
 
     /* TIME PRESETS */
     public static final KeyBinding TIME_DAY = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.day", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
-    public static final KeyBinding TIME_MIDNIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time_midnight", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
-    public static final KeyBinding TIME_NIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time_night", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
-    public static final KeyBinding TIME_NOON = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time_noon", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+    public static final KeyBinding TIME_MIDNIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.midnight", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+    public static final KeyBinding TIME_NIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.night", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+    public static final KeyBinding TIME_NOON = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.noon", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
 
     @Override
-    public void onInitialize() {//TODO: Add toast messages
+    public void onInitialize() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
 
@@ -38,10 +38,10 @@ public class FalseReality implements ModInitializer {
                 client.getToastManager().add(new SpedUpTimeInfoToast());
             }
 
-            if (TIME_DAY.wasPressed()) Config.CustomTime = 0;//TODO: Add time
-            if (TIME_MIDNIGHT.wasPressed()) Config.CustomTime = 18000;
-            if (TIME_NIGHT.wasPressed()) Config.CustomTime = 13000;
-            if (TIME_NOON.wasPressed()) Config.CustomTime = 6000;
+            if (TIME_DAY.wasPressed()) Preset.DAY.load();
+            if (TIME_MIDNIGHT.wasPressed()) Preset.MIDNIGHT.load();
+            if (TIME_NIGHT.wasPressed()) Preset.NIGHT.load();
+            if (TIME_NOON.wasPressed()) Preset.NOON.load();
         });
     }
 }

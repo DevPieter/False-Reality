@@ -15,12 +15,12 @@ public class CustomTimeInfoToast extends ItemToast {
 
     @Override
     protected @NotNull Text getTitle() {
-        return new TranslatableText("Custom Time (todo) translate");
+        return new TranslatableText("string.falsereality.custom_time");
     }
 
     @Override
     protected @NotNull Text getDescription() {
-        return TextUtils.getEnabledText(Config.CustomTimeEnabled);
+        return TextUtils.appendText(TextUtils.getEnabledText(Config.CustomTimeEnabled), String.format(" (%s)", Config.CustomTime));
     }
 
     @Override

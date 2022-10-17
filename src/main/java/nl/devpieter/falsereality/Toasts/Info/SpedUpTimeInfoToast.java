@@ -14,14 +14,12 @@ public class SpedUpTimeInfoToast extends ItemToast {
 
     @Override
     protected @NotNull Text getTitle() {
-        return new TranslatableText("Sped Up Time (todo) translate");
+        return new TranslatableText("string.falsereality.sped_up_time");
     }
 
     @Override
     protected @NotNull Text getDescription() {
-        Text title = TextUtils.getEnabledText(Config.SpedUpTimeEnabled);
-        title = TextUtils.appendText(title, new LiteralText(String.format(" (%s)", Config.SpedUpBy)));
-        return title;
+        return TextUtils.appendText(TextUtils.getEnabledText(Config.SpedUpTimeEnabled), String.format(" (%s)", Config.SpedUpBy));
     }
 
     @Override
