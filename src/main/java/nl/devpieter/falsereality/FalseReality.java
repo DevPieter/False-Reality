@@ -42,8 +42,7 @@ public class FalseReality implements ModInitializer {
                 IToast.send(new SpedUpTimeInfoToast());
             }
 
-            for (Preset preset : Arrays.stream(Preset.values()).filter(preset -> preset.keyBinding.wasPressed()).toList())
-                preset.load();
+            for (Preset preset : Arrays.stream(Preset.values()).filter(preset -> preset.keyBinding.wasPressed()).toList()) preset.load();
 
 //            if (TIME_DAY.wasPressed()) Preset.DAY.load();
 //            if (TIME_MIDNIGHT.wasPressed()) Preset.MIDNIGHT.load();
