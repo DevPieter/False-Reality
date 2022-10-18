@@ -12,6 +12,8 @@ import nl.devpieter.falsereality.Toasts.Info.SpedUpTimeInfoToast;
 import nl.devpieter.falsereality.Utils.Preset;
 import org.lwjgl.glfw.GLFW;
 
+import java.util.Arrays;
+
 public class FalseReality implements ModInitializer {
 
     public static final KeyBinding TOGGLE_CUSTOM_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.toggle_custom_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, "category.falsereality"));
@@ -21,10 +23,10 @@ public class FalseReality implements ModInitializer {
     public static final KeyBinding SYNC_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.sync_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F8, "category.falsereality"));
 
     /* TIME PRESETS */
-    public static final KeyBinding TIME_DAY = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.day", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
-    public static final KeyBinding TIME_MIDNIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.midnight", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
-    public static final KeyBinding TIME_NIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.night", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
-    public static final KeyBinding TIME_NOON = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.noon", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+//    public static final KeyBinding TIME_DAY = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.day", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+//    public static final KeyBinding TIME_MIDNIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.midnight", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+//    public static final KeyBinding TIME_NIGHT = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.night", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
+//    public static final KeyBinding TIME_NOON = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.time.noon", InputUtil.Type.KEYSYM, InputUtil.UNKNOWN_KEY.getCode(), "category.falsereality"));
 
     @Override
     public void onInitialize() {
@@ -40,10 +42,13 @@ public class FalseReality implements ModInitializer {
                 IToast.send(new SpedUpTimeInfoToast());
             }
 
-            if (TIME_DAY.wasPressed()) Preset.DAY.load();
-            if (TIME_MIDNIGHT.wasPressed()) Preset.MIDNIGHT.load();
-            if (TIME_NIGHT.wasPressed()) Preset.NIGHT.load();
-            if (TIME_NOON.wasPressed()) Preset.NOON.load();
+            for (Preset preset : Arrays.stream(Preset.values()).filter(preset -> preset.keyBinding.wasPressed()).toList())
+                preset.load();
+
+//            if (TIME_DAY.wasPressed()) Preset.DAY.load();
+//            if (TIME_MIDNIGHT.wasPressed()) Preset.MIDNIGHT.load();
+//            if (TIME_NIGHT.wasPressed()) Preset.NIGHT.load();
+//            if (TIME_NOON.wasPressed()) Preset.NOON.load();
         });
     }
 }
