@@ -11,7 +11,7 @@ import nl.devpieter.falsereality.Toasts.Info.PresetLoadedInfoToast;
 
 public enum Preset {
 
-    DAY("day", 1000), MIDNIGHT("midnight", 18000), NIGHT("night", 13000), NOON("noon", 6000);
+    DAY("day", 1000), NOON("noon", 6000), NIGHT("night", 13000), MIDNIGHT("midnight", 18000);
 
     public final KeyBinding keyBinding;
     public final String translationKey;
