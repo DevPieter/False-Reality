@@ -31,4 +31,7 @@ public enum Preset {
     public Text getName() {
         return new TranslatableText("key.falsereality.time." + this.translationKey);
     }
+
+    public static void loadKeybindings() {
+    }
 }
