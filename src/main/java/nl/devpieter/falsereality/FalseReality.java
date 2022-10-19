@@ -21,11 +21,10 @@ public class FalseReality implements ModInitializer {
     public static final KeyBinding SCROLL_THROUGH_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.scroll_through_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_ALT, "category.falsereality"));
 
     public static final KeyBinding SYNC_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.sync_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F8, "category.falsereality"));
-    
+
     @Override
     public void onInitialize() {
         Preset.loadKeybindings();
-
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
 

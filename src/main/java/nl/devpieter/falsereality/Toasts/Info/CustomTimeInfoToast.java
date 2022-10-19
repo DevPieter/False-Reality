@@ -20,7 +20,7 @@ public class CustomTimeInfoToast extends ItemToast {
 
     @Override
     protected @NotNull Text getDescription() {
-        return TextUtils.appendText(TextUtils.getEnabledText(Config.CustomTimeEnabled), String.format(" (%s)", Config.CustomTime));
+        return TextUtils.appendText(TextUtils.getEnabledText(Config.CustomTimeEnabled), Config.CustomTimeEnabled ? String.format(" (%s)", Config.CustomTime) : "");
     }
 
     @Override
