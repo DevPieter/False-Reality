@@ -43,12 +43,13 @@ public abstract class ClientWorldMixin extends World {
         }
         if (!Config.CustomTimeEnabled) return;
 
-        if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;
-        if (Config.SpedUpBy < -250) Config.SpedUpBy = 250;
+        //TODO: Replace
+//        if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;
+//        if (Config.SpedUpBy < -250) Config.SpedUpBy = 250;
         if (Config.SpedUpTimeEnabled) Config.CustomTime += Config.SpedUpBy;
 
-        if (Config.CustomTime > 24000) Config.CustomTime = 0;
-        if (Config.CustomTime < 0) Config.CustomTime = 24000;
+//        if (Config.CustomTime > 24000) Config.CustomTime = 0;
+//        if (Config.CustomTime < 0) Config.CustomTime = 24000;
         this.clientWorldProperties.setTimeOfDay(Config.CustomTime);
 
         callbackInfo.cancel();
