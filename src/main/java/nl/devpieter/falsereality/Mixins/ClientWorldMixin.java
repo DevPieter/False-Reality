@@ -43,7 +43,7 @@ public abstract class ClientWorldMixin extends World {
         }
         if (!Config.CustomTimeEnabled) return;
         if (Config.SpedUpTimeEnabled) Config.addCustomTime(Config.SpedUpBy);
-        this.clientWorldProperties.setTimeOfDay(Config.CustomTime);
+        this.clientWorldProperties.setTimeOfDay(Config.CustomTime + Config.MoonPhase.getExtraTime());
 
         callbackInfo.cancel();
     }

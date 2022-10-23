@@ -1,9 +1,13 @@
 package nl.devpieter.falsereality.Settings;
 
+import nl.devpieter.falsereality.Enums.MoonPhase;
+
 public class Config {
 
     public static boolean CustomTimeEnabled;
     public static long CustomTime = 13000;
+
+    public static MoonPhase MoonPhase;
 
     public static boolean SpedUpTimeEnabled;
     public static long SpedUpBy = 15;

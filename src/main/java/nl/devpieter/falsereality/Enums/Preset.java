@@ -1,4 +1,4 @@
-package nl.devpieter.falsereality.Utils;
+package nl.devpieter.falsereality.Enums;
 
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
@@ -10,8 +10,8 @@ import nl.devpieter.falsereality.Toasts.IToast;
 import nl.devpieter.falsereality.Toasts.Info.PresetLoadedInfoToast;
 
 public enum Preset {
-
-    DAY("day", 1000), NOON("noon", 6000), NIGHT("night", 13000), MIDNIGHT("midnight", 18000);
+    
+    Day("day", 1000), Noon("noon", 6000), Night("night", 13000), Midnight("midnight", 18000);
 
     public final KeyBinding keyBinding;
     public final String translationKey;

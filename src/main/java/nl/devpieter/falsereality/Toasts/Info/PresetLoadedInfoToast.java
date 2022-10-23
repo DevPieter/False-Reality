@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import nl.devpieter.falsereality.Utils.Preset;
+import nl.devpieter.falsereality.Enums.Preset;
 import nl.devpieter.falsereality.Toasts.ItemToast;
 import nl.devpieter.falsereality.Utils.TextUtils;
 import org.jetbrains.annotations.NotNull;
