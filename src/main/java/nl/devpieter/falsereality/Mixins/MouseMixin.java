@@ -24,18 +24,12 @@ public class MouseMixin {
     public void onMouseScroll(long window, double horizontal, double vertical, CallbackInfo callbackInfo) {
         if (!FalseReality.SCROLL_THROUGH_TIME.isPressed()) return;
 
-        //TODO: Testing
         boolean ultra = Screen.hasAltDown();
         boolean slow = Screen.hasShiftDown();
         boolean fast = Screen.hasControlDown();
 
-        if (Config.SpedUpTimeEnabled) {
-            //TODO: Config.SpedUpBy += this.getSpedUpBy((long) vertical, slow, fast, ultra);
-            this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.sped_up_time_set_to", Config.addSpedUpBy(this.getSpedUpBy((long) vertical, slow, fast, ultra))), false);
-        } else {
-            //TODO: Config.CustomTime += this.getCustomTime((long) vertical, slow, fast, ultra);
-            this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.custom_time_set_to", Config.addCustomTime(this.getCustomTime((long) vertical, slow, fast, ultra))), false);
-        }
+        if (Config.SpedUpTimeEnabled) this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.sped_up_time_set_to", Config.addSpedUpBy(this.getSpedUpBy((long) vertical, slow, fast, ultra))), false);
+        else this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.custom_time_set_to", Config.addCustomTime(this.getCustomTime((long) vertical, slow, fast, ultra))), false);
 
         callbackInfo.cancel();
     }
