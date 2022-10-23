@@ -7,7 +7,7 @@ public class Config {
     public static boolean CustomTimeEnabled;
     public static long CustomTime = 13000;
 
-    public static MoonPhase MoonPhase;
+    public static MoonPhase moonPhase;
 
     public static boolean SpedUpTimeEnabled;
     public static long SpedUpBy = 15;
@@ -21,6 +21,10 @@ public class Config {
 
     public static long addCustomTime(long time) {
         return setCustomTime(CustomTime + time);
+    }
+
+    public static MoonPhase getMoonPhase() {
+        return moonPhase == null ? MoonPhase.FullMoon : moonPhase;
     }
 
     public static long setSpedUpBy(long spedUpBy) {

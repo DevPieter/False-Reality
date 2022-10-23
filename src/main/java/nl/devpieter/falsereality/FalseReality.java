@@ -29,7 +29,7 @@ public class FalseReality implements ModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
 
-            Config.MoonPhase = MoonPhase.NewMoon;
+            Config.moonPhase = MoonPhase.NewMoon;
 
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.CustomTimeEnabled = !Config.CustomTimeEnabled;
