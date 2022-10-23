@@ -38,18 +38,11 @@ public abstract class ClientWorldMixin extends World {
     @Inject(at = @At("HEAD"), method = "setTimeOfDay", cancellable = true)
     public void onSetTimeOfDay(long timeOfDay, CallbackInfo callbackInfo) {
         if (FalseReality.SYNC_TIME.wasPressed()) {
-            Config.CustomTime = (this.client.getServer() == null ? timeOfDay : this.client.getServer().getOverworld().getTimeOfDay()) % 24000L;
+            Config.setCustomTime(this.client.getServer() == null ? timeOfDay : this.client.getServer().getOverworld().getTimeOfDay());
             IToast.send(new TimeSyncedInfoToast(!(this.client.getServer() == null && Config.CustomTimeEnabled)));
         }
         if (!Config.CustomTimeEnabled) return;
-
-        //TODO: Replace
-//        if (Config.SpedUpBy > 250) Config.SpedUpBy = -250;
-//        if (Config.SpedUpBy < -250) Config.SpedUpBy = 250;
-        if (Config.SpedUpTimeEnabled) Config.CustomTime += Config.SpedUpBy;
-
-//        if (Config.CustomTime > 24000) Config.CustomTime = 0;
-//        if (Config.CustomTime < 0) Config.CustomTime = 24000;
+        if (Config.SpedUpTimeEnabled) Config.addCustomTime(Config.SpedUpBy);
         this.clientWorldProperties.setTimeOfDay(Config.CustomTime);
 
         callbackInfo.cancel();

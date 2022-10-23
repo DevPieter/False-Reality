@@ -13,8 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.awt.*;
-
 @Mixin(Mouse.class)
 public class MouseMixin {
 
@@ -32,11 +30,11 @@ public class MouseMixin {
         boolean fast = Screen.hasControlDown();
 
         if (Config.SpedUpTimeEnabled) {
-            Config.SpedUpBy += this.getSpedUpBy((long) vertical, slow, fast, ultra);
-            this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.sped_up_time_set_to", Config.SpedUpBy), false);
+            //TODO: Config.SpedUpBy += this.getSpedUpBy((long) vertical, slow, fast, ultra);
+            this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.sped_up_time_set_to", Config.addSpedUpBy(this.getSpedUpBy((long) vertical, slow, fast, ultra))), false);
         } else {
-            Config.CustomTime += this.getCustomTime((long) vertical, slow, fast, ultra);
-            this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.custom_time_set_to", Config.CustomTime), false);
+            //TODO: Config.CustomTime += this.getCustomTime((long) vertical, slow, fast, ultra);
+            this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.custom_time_set_to", Config.addCustomTime(this.getCustomTime((long) vertical, slow, fast, ultra))), false);
         }
 
         callbackInfo.cancel();

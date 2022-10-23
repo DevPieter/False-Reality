@@ -24,7 +24,7 @@ public enum Preset {
     }
 
     public void load() {
-        Config.CustomTime = this.time;
+        Config.setCustomTime(this.time);
         IToast.send(new PresetLoadedInfoToast(this));
     }
 
