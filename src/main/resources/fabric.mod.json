@@ -3,13 +3,13 @@
   "id": "falsereality",
   "version": "1.0.0",
   "name": "False Reality",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Hmmm, why are the zombies burning while it's night?",
   "authors": [
     "DevPieter"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://devpieter.nl/",
+    "sources": "https://github.com/DevPieter/False-Reality"
   },
   "license": "MIT",
   "icon": "assets/falsereality/icon.png",
