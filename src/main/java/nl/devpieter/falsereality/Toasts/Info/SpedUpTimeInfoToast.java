@@ -19,12 +19,12 @@ public class SpedUpTimeInfoToast extends ItemToast {
 
     @Override
     protected @NotNull Text getDescription() {
-        return TextUtils.appendText(TextUtils.getEnabledText(Config.SpedUpTimeEnabled), Config.SpedUpTimeEnabled ? String.format(" (%s)", Config.SpedUpBy) : "");
+        return TextUtils.appendText(TextUtils.getEnabledText(Config.spedUpTimeEnabled()), Config.spedUpTimeEnabled() ? String.format(" (%s)", Config.spedUpBy()) : "");
     }
 
     @Override
     protected Color getDescriptionColor() {
-        return TextUtils.getEnabledColor(Config.SpedUpTimeEnabled);
+        return TextUtils.getEnabledColor(Config.spedUpTimeEnabled());
     }
 
     @Override

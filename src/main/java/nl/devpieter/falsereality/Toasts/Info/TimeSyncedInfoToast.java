@@ -26,7 +26,7 @@ public class TimeSyncedInfoToast extends ItemToast {
     @Override
     protected @NotNull Text getDescription() {
         Text description = new TranslatableText("string.falsereality.sync.unsuccessful");
-        if (this.successful) description = new TranslatableText("string.falsereality.sync.successful", Config.CustomTime);
+        if (this.successful) description = new TranslatableText("string.falsereality.sync.successful", Config.customTime());
         return description;
     }
 

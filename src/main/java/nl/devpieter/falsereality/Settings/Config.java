@@ -4,37 +4,65 @@ import nl.devpieter.falsereality.Enums.MoonPhase;
 
 public class Config {
 
-    public static boolean CustomTimeEnabled;
-    public static long CustomTime = 13000;
+    private static boolean customTimeEnabled;
+    private static long customTime = 13000;
 
-    public static MoonPhase moonPhase;
+    private static MoonPhase moonPhase;
 
-    public static boolean SpedUpTimeEnabled;
-    public static long SpedUpBy = 15;
+    private static boolean spedUpTimeEnabled;
+    private static long spedUpBy = 15;
 
-    public static long setCustomTime(long time) {
+    public static boolean customTimeEnabled() {
+        return customTimeEnabled;
+    }
+
+    public static void customTimeEnabled(boolean enabled) {
+        customTimeEnabled = enabled;
+    }
+
+    public static long customTime() {
+        return customTime;
+    }
+
+    public static long customTime(long time) {
         time = time % 24000L;
         if (time < 0) time = 24000;
-        CustomTime = time;
-        return CustomTime;
+        customTime = time;
+        return customTime;
     }
 
     public static long addCustomTime(long time) {
-        return setCustomTime(CustomTime + time);
+        return customTime(customTime + time);
     }
 
-    public static MoonPhase getMoonPhase() {
-        return moonPhase == null ? MoonPhase.FullMoon : moonPhase;
+    public static MoonPhase moonPhase() {
+        return moonPhase;
     }
 
-    public static long setSpedUpBy(long spedUpBy) {
+    public static void moonPhase(MoonPhase moonPhase) {
+        Config.moonPhase = moonPhase;
+    }
+
+    public static boolean spedUpTimeEnabled() {
+        return spedUpTimeEnabled;
+    }
+
+    public static void spedUpTimeEnabled(boolean enabled) {
+        spedUpTimeEnabled = enabled;
+    }
+
+    public static long spedUpBy() {
+        return spedUpBy;
+    }
+
+    public static long spedUpBy(long spedUpBy) {
         if (spedUpBy > 250) spedUpBy = -250;
         if (spedUpBy < -250) spedUpBy = 250;
-        SpedUpBy = spedUpBy;
-        return SpedUpBy;
+        Config.spedUpBy = spedUpBy;
+        return Config.spedUpBy;
     }
 
     public static long addSpedUpBy(long spedUpBy) {
-        return setSpedUpBy(SpedUpBy + spedUpBy);
+        return spedUpBy(Config.spedUpBy + spedUpBy);
     }
 }

@@ -28,7 +28,7 @@ public class MouseMixin {
         boolean slow = Screen.hasShiftDown();
         boolean fast = Screen.hasControlDown();
 
-        if (Config.SpedUpTimeEnabled) this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.sped_up_time_set_to", Config.addSpedUpBy(this.getSpedUpBy((long) vertical, slow, fast, ultra))), false);
+        if (Config.spedUpTimeEnabled()) this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.sped_up_time_set_to", Config.addSpedUpBy(this.getSpedUpBy((long) vertical, slow, fast, ultra))), false);
         else this.client.inGameHud.setOverlayMessage(new TranslatableText("string.falsereality.custom_time_set_to", Config.addCustomTime(this.getCustomTime((long) vertical, slow, fast, ultra))), false);
 
         callbackInfo.cancel();

@@ -38,12 +38,12 @@ public abstract class ClientWorldMixin extends World {
     @Inject(at = @At("HEAD"), method = "setTimeOfDay", cancellable = true)
     public void onSetTimeOfDay(long timeOfDay, CallbackInfo callbackInfo) {
         if (FalseReality.SYNC_TIME.wasPressed()) {
-            Config.setCustomTime(this.client.getServer() == null ? timeOfDay : this.client.getServer().getOverworld().getTimeOfDay());
-            IToast.send(new TimeSyncedInfoToast(!(this.client.getServer() == null && Config.CustomTimeEnabled)));
+            Config.customTime(this.client.getServer() == null ? timeOfDay : this.client.getServer().getOverworld().getTimeOfDay());
+            IToast.send(new TimeSyncedInfoToast(!(this.client.getServer() == null && Config.customTimeEnabled())));
         }
-        if (!Config.CustomTimeEnabled) return;
-        if (Config.SpedUpTimeEnabled) Config.addCustomTime(Config.SpedUpBy);
-        this.clientWorldProperties.setTimeOfDay(Config.CustomTime + Config.getMoonPhase().getExtraTime());
+        if (!Config.customTimeEnabled()) return;
+        if (Config.spedUpTimeEnabled()) Config.addCustomTime(Config.spedUpBy());
+        this.clientWorldProperties.setTimeOfDay(Config.customTime() + Config.moonPhase().getExtraTime());
 
         callbackInfo.cancel();
     }

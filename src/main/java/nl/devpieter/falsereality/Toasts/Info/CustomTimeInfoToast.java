@@ -20,12 +20,12 @@ public class CustomTimeInfoToast extends ItemToast {
 
     @Override
     protected @NotNull Text getDescription() {
-        return TextUtils.appendText(TextUtils.getEnabledText(Config.CustomTimeEnabled), Config.CustomTimeEnabled ? String.format(" (%s)", Config.CustomTime) : "");
+        return TextUtils.appendText(TextUtils.getEnabledText(Config.customTimeEnabled()), Config.customTimeEnabled() ? String.format(" (%s)", Config.customTime()) : "");
     }
 
     @Override
     protected Color getDescriptionColor() {
-        return TextUtils.getEnabledColor(Config.CustomTimeEnabled);
+        return TextUtils.getEnabledColor(Config.customTimeEnabled());
     }
 
     @Override
