@@ -14,6 +14,7 @@ import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Identifier;
 import nl.devpieter.falsereality.Enums.MoonPhase;
 import nl.devpieter.falsereality.Screens.Widgets.ItemToggleWidget;
+import nl.devpieter.falsereality.Screens.Widgets.SliderWidget;
 import nl.devpieter.falsereality.Settings.Config;
 
 import java.awt.*;
@@ -38,6 +39,9 @@ public class ChangeRealityScreen extends Screen {
 
         int center = this.width / 2;
         int bottom = this.textureHeight + top;
+
+        //TODO: Debug
+        SliderWidget sliderWidget = new SliderWidget(10, 10, 128, 20, "TODO", 0, 5, 0);
 
         this.customTimeEnabledWidget = new ItemToggleWidget(center - ItemToggleWidget.textureWidth - 10, this.top + 35, Config.customTimeEnabled(), Config::customTimeEnabled);
         this.customTimeEnabledWidget.setItem(new ItemStack(Items.CLOCK));

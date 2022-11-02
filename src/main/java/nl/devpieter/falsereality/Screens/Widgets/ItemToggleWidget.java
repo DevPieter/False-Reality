@@ -9,6 +9,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Identifier;
+import nl.devpieter.falsereality.Screens.Widgets.Callbacks.ToggleCallback;
 
 public class ItemToggleWidget extends ClickableWidget {
 
