@@ -58,7 +58,6 @@ public class ChangeRealityScreen extends Screen {
         super.render(matrices, mouseX, mouseY, delta);
 
         drawCenteredTextWithShadow(matrices, this.textRenderer, this.title.asOrderedText(), this.width / 2, this.top + 12, new Color(255, 85, 85).getRGB());
-        drawCenteredTextWithShadow(matrices, this.textRenderer, new LiteralText("|").asOrderedText(), this.width / 2, this.top + 35, new Color(255, 85, 85).getRGB());
     }
 
     public void renderBackgroundImage(MatrixStack matrices) {
@@ -68,7 +67,7 @@ public class ChangeRealityScreen extends Screen {
         this.drawTexture(matrices, this.left, this.top, 0, 0, this.textureWidth, this.textureHeight);
     }
 
-    @Override
+    @Override//TODO: Remove (DEBUG)
     public boolean mouseClicked(double mouseX, double mouseY, int button) {
         return super.mouseClicked(mouseX, mouseY, button);
     }
