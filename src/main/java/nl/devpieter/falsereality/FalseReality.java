@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import nl.devpieter.falsereality.Enums.MoonPhase;
+import nl.devpieter.falsereality.Screens.ChangeRealityScreen;
 import nl.devpieter.falsereality.Settings.Config;
 import nl.devpieter.falsereality.Toasts.IToast;
 import nl.devpieter.falsereality.Toasts.Info.CustomTimeInfoToast;
@@ -23,13 +24,20 @@ public class FalseReality implements ModInitializer {
 
     public static final KeyBinding SYNC_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.sync_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F8, "category.falsereality"));
 
+
+    public static final KeyBinding DEBUG = KeyBindingHelper.registerKeyBinding(new KeyBinding("Debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F8, "category.falsereality"));
+
     @Override
     public void onInitialize() {
         Preset.loadKeybindings();
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
 
+            //TODO: Debug remove
             Config.moonPhase(MoonPhase.NewMoon);
+
+
+            if(DEBUG.wasPressed())client.setScreen(new ChangeRealityScreen());
 
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.customTimeEnabled(!Config.customTimeEnabled());
