@@ -33,11 +33,7 @@ public class FalseReality implements ModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null) return;
 
-            //TODO: Debug remove
-            Config.moonPhase(MoonPhase.NewMoon);
-
-
-            if(DEBUG.wasPressed())client.setScreen(new ChangeRealityScreen());
+            if (DEBUG.wasPressed()) client.setScreen(new ChangeRealityScreen());
 
             if (TOGGLE_CUSTOM_TIME.wasPressed()) {
                 Config.customTimeEnabled(!Config.customTimeEnabled());

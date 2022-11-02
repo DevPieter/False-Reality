@@ -15,12 +15,17 @@ public class ItemToggleWidget extends ClickableWidget {
     private final MinecraftClient client = MinecraftClient.getInstance();
     private final Identifier texture = new Identifier("falsereality", "textures/gui/item_toggle_widget.png");
 
+    public static final int textureWidth = 24, textureHeight = 24;
+
     private boolean toggled;
+    private final ToggleCallback callback;
+
     private ItemStack enabledItem, disabledItem;
 
-    public ItemToggleWidget(int x, int y, boolean toggled) {
+    public ItemToggleWidget(int x, int y, boolean toggled, ToggleCallback callback) {
         super(x, y, 24, 24, LiteralText.EMPTY);
         this.toggled = toggled;
+        this.callback = callback;
     }
 
     public boolean toggled() {
@@ -29,6 +34,7 @@ public class ItemToggleWidget extends ClickableWidget {
 
     public void toggled(boolean toggled) {
         this.toggled = toggled;
+        this.callback.onToggle(toggled);
     }
 
     public void setItem(ItemStack item) {
@@ -54,7 +60,7 @@ public class ItemToggleWidget extends ClickableWidget {
 
     @Override
     public void onClick(double mouseX, double mouseY) {
-        this.toggled = !this.toggled;
+        this.toggled(!this.toggled());
     }
 
     @Override
