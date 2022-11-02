@@ -17,7 +17,7 @@ public enum MoonPhase {
 
     public Text getName() {
         return new TranslatableText("key.falsereality.moon_phase." + this.translationKey);
-    }//TODO: Add translations
+    }
 
     public long getExtraTime() {
         return 24000L * day;

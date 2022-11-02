@@ -36,7 +36,7 @@ public class Config {
     }
 
     public static MoonPhase moonPhase() {
-        return moonPhase;
+        return moonPhase == null ? MoonPhase.FullMoon : moonPhase;
     }
 
     public static void moonPhase(MoonPhase moonPhase) {
