@@ -1,5 +1,6 @@
 package nl.devpieter.falsereality.Screens.Widgets;
 
+import net.minecraft.text.LiteralText;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.MathHelper;
 
@@ -18,15 +19,22 @@ public class SliderWidget extends net.minecraft.client.gui.widget.SliderWidget {
 
     @Override
     protected void updateMessage() {
-
+        this.setMessage(new LiteralText("Test: " + (int) this.value()));
     }
 
     @Override
     protected void applyValue() {
         System.out.println("Test: " + this.value());
+        value(10);
     }
 
     public double value() {
-        return MathHelper.clamp(this.value * max, this.min, this.max);
+        return (this.value * (this.max - this.min)) + this.min;
+    }
+
+    public void value(double value) {
+        System.out.println(this.value);//TODO: Not working
+        System.out.println(value() / (this.max + this.min));
+        System.out.println(value());
     }
 }

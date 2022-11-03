@@ -41,7 +41,7 @@ public class ChangeRealityScreen extends Screen {
         int bottom = this.textureHeight + top;
 
         //TODO: Debug
-        SliderWidget sliderWidget = new SliderWidget(10, 10, 128, 20, "TODO", 0, 5, 0);
+        SliderWidget sliderWidget = new SliderWidget(10, 10, 128, 20, "TODO", 5, 15, 10);
         this.addDrawableChild(sliderWidget);
 
         this.customTimeEnabledWidget = new ItemToggleWidget(center - ItemToggleWidget.textureWidth - 10, this.top + 35, Config.customTimeEnabled(), Config::customTimeEnabled);
