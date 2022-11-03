@@ -23,7 +23,7 @@ public class Config {
     public static long customTime() {
         return customTime;
     }
-
+    
     public static long customTime(long time) {
         time = time % 24000L;
         if (time < 0) time = 24000;

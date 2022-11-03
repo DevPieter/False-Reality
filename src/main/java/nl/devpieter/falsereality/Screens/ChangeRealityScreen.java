@@ -25,9 +25,6 @@ public class ChangeRealityScreen extends Screen {
     private final int textureWidth = 147, textureHeight = 166;
     private int top, left;
 
-    private ItemToggleWidget customTimeEnabledWidget, spedUpTimeEnabledWidget;
-    private CyclingButtonWidget<MoonPhase> moonPhaseWidget;
-
     public ChangeRealityScreen() {
         super(new TranslatableText("screen.falsereality.change_reality"));
     }
@@ -40,20 +37,25 @@ public class ChangeRealityScreen extends Screen {
         int center = this.width / 2;
         int bottom = this.textureHeight + top;
 
-        //TODO: Debug
-        SliderWidget sliderWidget = new SliderWidget(10, 10, 128, 20, "TODO", 5, 15, 10);
-        this.addDrawableChild(sliderWidget);
+        ItemToggleWidget customTimeEnabledWidget = new ItemToggleWidget(center - ItemToggleWidget.textureWidth - 10, this.top + 35, Config.customTimeEnabled(), Config::customTimeEnabled);
+        customTimeEnabledWidget.setItem(new ItemStack(Items.CLOCK));
+        this.addDrawableChild(customTimeEnabledWidget);
 
-        this.customTimeEnabledWidget = new ItemToggleWidget(center - ItemToggleWidget.textureWidth - 10, this.top + 35, Config.customTimeEnabled(), Config::customTimeEnabled);
-        this.customTimeEnabledWidget.setItem(new ItemStack(Items.CLOCK));
-        this.addDrawableChild(this.customTimeEnabledWidget);
+        ItemToggleWidget spedUpTimeEnabledWidget = new ItemToggleWidget(center + 10, this.top + 35, Config.spedUpTimeEnabled(), Config::spedUpTimeEnabled);
+        spedUpTimeEnabledWidget.setItems(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.SWIFTNESS), new ItemStack(Items.GLASS_BOTTLE));
+        this.addDrawableChild(spedUpTimeEnabledWidget);
 
-        this.spedUpTimeEnabledWidget = new ItemToggleWidget(center + 10, this.top + 35, Config.spedUpTimeEnabled(), Config::spedUpTimeEnabled);
-        this.spedUpTimeEnabledWidget.setItems(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.SWIFTNESS), new ItemStack(Items.GLASS_BOTTLE));
-        this.addDrawableChild(this.spedUpTimeEnabledWidget);
+        //TODO: Translate
+        SliderWidget customTimeSliderWidget = new SliderWidget(10, 10, 128, "TODO", 0, 24000, value -> Config.customTime(Math.round(value)));
+        customTimeSliderWidget.value(Config.customTime());
+        this.addDrawableChild(customTimeSliderWidget);
 
-        this.moonPhaseWidget = CyclingButtonWidget.builder(MoonPhase::getName).values(MoonPhase.values()).initially(Config.moonPhase()).omitKeyText().build(center - 64, bottom - 28, 128, 20, LiteralText.EMPTY, (button, moonPhase) -> Config.moonPhase(moonPhase));
-        this.addDrawableChild(this.moonPhaseWidget);
+        SliderWidget spedUpTimeSliderWidget = new SliderWidget(10, 35, 128, "TODO", -250, 250, value -> Config.spedUpBy(Math.round(value)));
+        spedUpTimeSliderWidget.value(Config.spedUpBy());
+        this.addDrawableChild(spedUpTimeSliderWidget);
+
+        CyclingButtonWidget<MoonPhase> moonPhaseWidget = CyclingButtonWidget.builder(MoonPhase::getName).values(MoonPhase.values()).initially(Config.moonPhase()).omitKeyText().build(center - 64, bottom - 28, 128, 20, LiteralText.EMPTY, (button, moonPhase) -> Config.moonPhase(moonPhase));
+        this.addDrawableChild(moonPhaseWidget);
     }
 
     @Override
@@ -70,11 +72,6 @@ public class ChangeRealityScreen extends Screen {
         RenderSystem.setShaderTexture(0, this.texture);
 
         this.drawTexture(matrices, this.left, this.top, 0, 0, this.textureWidth, this.textureHeight);
-    }
-
-    @Override//TODO: Remove (DEBUG)
-    public boolean mouseClicked(double mouseX, double mouseY, int button) {
-        return super.mouseClicked(mouseX, mouseY, button);
     }
 
     @Override
