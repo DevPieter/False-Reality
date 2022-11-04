@@ -17,6 +17,8 @@
   "key.falsereality.moon_phase.waxing_crescent": "Waxing Crescent",
   "key.falsereality.moon_phase.first_quarter": "First Quarter",
   "key.falsereality.moon_phase.waxing_gibbous": "Waxing Gibbous",
+  "string.falsereality.custom_time_value": "Custom Time %s",
+  "string.falsereality.sped_up_value": "Sped Up by %s",
   "string.falsereality.enabled": "Enabled",
   "string.falsereality.disabled": "Disabled",
   "string.falsereality.custom_time": "Custom Time",
