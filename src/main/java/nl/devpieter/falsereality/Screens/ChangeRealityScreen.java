@@ -45,11 +45,11 @@ public class ChangeRealityScreen extends Screen {
         spedUpTimeEnabledWidget.setItems(PotionUtil.setPotion(new ItemStack(Items.POTION), Potions.SWIFTNESS), new ItemStack(Items.GLASS_BOTTLE));
         this.addDrawableChild(spedUpTimeEnabledWidget);
 
-        SliderWidget customTimeSliderWidget = new SliderWidget(10, 10, 128, "string.falsereality.custom_time_value", 0, 24000, value -> Config.customTime(Math.round(value)));
+        SliderWidget customTimeSliderWidget = new SliderWidget(center - 64, bottom - 68, 128, "string.falsereality.custom_time_value", 0, 24000, value -> Config.customTime(Math.round(value)));
         customTimeSliderWidget.value(Config.customTime());
         this.addDrawableChild(customTimeSliderWidget);
 
-        SliderWidget spedUpTimeSliderWidget = new SliderWidget(10, 35, 128, "string.falsereality.sped_up_value", -250, 250, value -> Config.spedUpBy(Math.round(value)));
+        SliderWidget spedUpTimeSliderWidget = new SliderWidget(center - 64, bottom - 48, 128, "string.falsereality.sped_up_value", -250, 250, value -> Config.spedUpBy(Math.round(value)));
         spedUpTimeSliderWidget.value(Config.spedUpBy());
         this.addDrawableChild(spedUpTimeSliderWidget);
 
