@@ -1,25 +1,31 @@
-package nl.devpieter.falsereality.Enums;
+package nl.devpieter.falsereality.enums;
 
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 
 public enum MoonPhase {
 
-    FullMoon("full_moon", 0), WaningGibbous("waning_gibbous", 1), LastQuarter("last_quarter", 2), WaningCrescent("waning_crescent", 3), NewMoon("new_moon", 4), WaxingCrescent("waxing_crescent", 5), FirstQuarter("first_quarter", 6), WaxingGibbous("waxing_gibbous", 7);
+    FullMoon("full_moon", 0),
+    WaningGibbous("waning_gibbous", 1),
+    LastQuarter("last_quarter", 2),
+    WaningCrescent("waning_crescent", 3),
+    NewMoon("new_moon", 4),
+    WaxingCrescent("waxing_crescent", 5),
+    FirstQuarter("first_quarter", 6),
+    WaxingGibbous("waxing_gibbous", 7);
 
-    public final String translationKey;
-    public final int day;
+    private final String name;
+    private final int dayOffset;
 
-    MoonPhase(String translationKey, int day) {
-        this.translationKey = translationKey;
-        this.day = day;
+    MoonPhase(String name, int dayOffset) {
+        this.name = name;
+        this.dayOffset = dayOffset;
     }
 
-    public Text getName() {
-        return new TranslatableText("key.falsereality.moon_phase." + this.translationKey);
+    public Text getTranslatedName() {
+        return Text.translatable("falsereality.text.moon_phase." + this.name);
     }
 
     public long getExtraTime() {
-        return 24000L * day;
+        return this.dayOffset * 24000L;
     }
 }
