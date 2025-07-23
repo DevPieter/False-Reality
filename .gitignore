@@ -1,0 +1,56 @@
+!src/**/
+!versions/**/src/**/
+
+# Gradle build files
+/.gradle/
+/build/
+/out/
+
+versions/**/.gradle/
+versions/**/build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Minecraft run
+/run/
+/versions/**/run/
+
+# Fabric and Loom
+/.fabric/
+/.loom/
+versions/**/.loom/
+
+# Libraries
+/libs/
+versions/**/libs/
+
+# User environment
+*.swp
+*.swo
+
+# Java class files
+*.class
+
+# Include gradle wrapper files
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+/bin/
+/versions/**/bin/
