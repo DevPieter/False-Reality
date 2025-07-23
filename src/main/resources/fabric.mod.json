@@ -3,7 +3,7 @@
   "id": "false_reality",
   "version": "${version}",
   "name": "False Reality",
-  "description": "todo",
+  "description": "False Reality lets you take full control over the Minecraft client-side time, adjust the time of day, tweak the moon phase, and customize your experience for immersion or cinematic effects.",
   "authors": [
     "DevPieter"
   ],
