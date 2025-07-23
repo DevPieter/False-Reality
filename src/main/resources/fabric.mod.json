@@ -1,31 +1,32 @@
 {
   "schemaVersion": 1,
-  "id": "falsereality",
-  "version": "1.0.0",
+  "id": "false_reality",
+  "version": "${version}",
   "name": "False Reality",
-  "description": "Hmmm, why are the zombies burning while it's night?",
+  "description": "todo",
   "authors": [
     "DevPieter"
   ],
   "contact": {
-    "homepage": "https://devpieter.nl/",
-    "sources": "https://github.com/DevPieter/False-Reality"
+    "homepage": "https://pietr.space/",
+    "sources": "https://github.com/DevPieter/False-Reality",
+    "issues": "https://github.com/DevPieter/False-Reality/issues"
   },
   "license": "MIT",
-  "icon": "assets/falsereality/icon.png",
+  "icon": "assets/false_reality/icon.png",
   "environment": "client",
   "entrypoints": {
-    "main": [
+    "client": [
       "nl.devpieter.falsereality.FalseReality"
     ]
   },
   "mixins": [
-    "falsereality.mixins.json"
+    "false_reality.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "1.17.x",
-    "java": ">=16"
+    "minecraft": ">=${minecraft_version} <=${max_minecraft_version}",
+    "utilize": ">=1.0.11"
   }
 }

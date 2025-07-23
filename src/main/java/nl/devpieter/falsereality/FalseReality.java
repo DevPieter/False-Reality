@@ -1,48 +1,79 @@
 package nl.devpieter.falsereality;
 
-import net.fabricmc.api.ModInitializer;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import nl.devpieter.falsereality.Screens.ChangeRealityScreen;
-import nl.devpieter.falsereality.Settings.Config;
-import nl.devpieter.falsereality.Toasts.IToast;
-import nl.devpieter.falsereality.Toasts.Info.CustomTimeInfoToast;
-import nl.devpieter.falsereality.Toasts.Info.SpedUpTimeInfoToast;
-import nl.devpieter.falsereality.Enums.Preset;
-import org.lwjgl.glfw.GLFW;
+import net.minecraft.text.Text;
+import nl.devpieter.falsereality.enums.MoonPhase;
+import nl.devpieter.falsereality.listeners.GameJoinPacketListener;
+import nl.devpieter.falsereality.models.TimeConfig;
+import nl.devpieter.falsereality.models.WorldConfig;
+import nl.devpieter.falsereality.statics.KeyBindings;
+import nl.devpieter.falsereality.statics.Settings;
+import nl.devpieter.utilize.managers.PacketManager;
 
-import java.util.Arrays;
+public class FalseReality implements ClientModInitializer {
 
-public class FalseReality implements ModInitializer {
-
-    public static final KeyBinding TOGGLE_CUSTOM_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.toggle_custom_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F6, "category.falsereality"));
-    public static final KeyBinding TOGGLE_SPED_UP_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.toggle_sped_up_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F7, "category.falsereality"));
-    public static final KeyBinding SCROLL_THROUGH_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.scroll_through_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_ALT, "category.falsereality"));
-
-    public static final KeyBinding SYNC_TIME = KeyBindingHelper.registerKeyBinding(new KeyBinding("key.falsereality.sync_time", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F8, "category.falsereality"));
-
-    public static final KeyBinding DEBUG = KeyBindingHelper.registerKeyBinding(new KeyBinding("Debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F8, "category.falsereality"));
+    private static FalseReality INSTANCE;
 
     @Override
-    public void onInitialize() {
-        Preset.loadKeybindings();
+    public void onInitializeClient() {
+        INSTANCE = this;
+        Settings.load();
+        KeyBindings.init();
+
+        PacketManager.getInstance().subscribe(new GameJoinPacketListener());
+
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.player == null) return;
+            if (KeyBindings.TOGGLE_KEY.wasPressed()) {
+                TimeManager timeManager = TimeManager.getInstance();
+                WorldConfig worldConfig = timeManager.getCurrentWorldConfig();
+                if (worldConfig == null) return;
 
-            if (DEBUG.wasPressed()) client.setScreen(new ChangeRealityScreen());
+                worldConfig.setEnabled(!worldConfig.isEnabled());
+                timeManager.save();
 
-            if (TOGGLE_CUSTOM_TIME.wasPressed()) {
-                Config.customTimeEnabled(!Config.customTimeEnabled());
-                IToast.send(new CustomTimeInfoToast());
+                Text message = worldConfig.isEnabled() ?
+                        Text.translatable("falsereality.text.false_reality_is", Text.translatable("falsereality.text.enabled")) :
+                        Text.translatable("falsereality.text.false_reality_is", Text.translatable("falsereality.text.disabled"));
+
+                client.inGameHud.setOverlayMessage(message, false);
             }
-            if (TOGGLE_SPED_UP_TIME.wasPressed()) {
-                Config.spedUpTimeEnabled(!Config.spedUpTimeEnabled());
-                IToast.send(new SpedUpTimeInfoToast());
-            }
+            if (KeyBindings.TOGGLE_USE_GLOBAL_CONFIG_KEY.wasPressed()) {
+                TimeManager timeManager = TimeManager.getInstance();
+                WorldConfig worldConfig = timeManager.getCurrentWorldConfig();
+                if (worldConfig == null) return;
 
-            for (Preset preset : Arrays.stream(Preset.values()).filter(preset -> preset.keyBinding.wasPressed()).toList()) preset.load();
+                worldConfig.setUseGlobalConfig(!worldConfig.useGlobalConfig());
+                timeManager.save();
+
+                Text message = worldConfig.useGlobalConfig() ?
+                        Text.translatable("falsereality.text.using_global_config") :
+                        Text.translatable("falsereality.text.using_world_config");
+
+                client.inGameHud.setOverlayMessage(message, false);
+            }
+            if (KeyBindings.CYCLE_MOON_PHASE_KEY.wasPressed()) {
+                TimeManager timeManager = TimeManager.getInstance();
+                TimeConfig timeConfig = timeManager.getCurrentTimeConfig();
+                if (timeConfig == null) return;
+
+                int nextOrdinal = (timeConfig.moonPhase().ordinal() + 1) % MoonPhase.values().length;
+                timeConfig.setMoonPhase(MoonPhase.values()[nextOrdinal]);
+                timeManager.save();
+
+                WorldConfig worldConfig = timeManager.getCurrentWorldConfig();
+                if (worldConfig == null) return;
+
+                Text message = worldConfig.useGlobalConfig() ?
+                        Text.translatable("falsereality.text.global_param", timeConfig.moonPhase().getTranslatedName()) :
+                        Text.translatable("falsereality.text.world_param", timeConfig.moonPhase().getTranslatedName());
+
+                client.inGameHud.setOverlayMessage(message, false);
+            }
         });
+    }
+
+    public static FalseReality getInstance() {
+        return INSTANCE;
     }
 }
