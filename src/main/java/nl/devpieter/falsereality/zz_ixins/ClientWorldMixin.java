@@ -1,4 +1,4 @@
-package nl.devpieter.falsereality.mixins;
+package nl.devpieter.falsereality.zz_ixins;
 
 import net.minecraft.client.world.ClientWorld;
 import nl.devpieter.falsereality.TimeManager;

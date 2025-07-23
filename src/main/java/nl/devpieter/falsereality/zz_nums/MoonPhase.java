@@ -1,4 +1,4 @@
-package nl.devpieter.falsereality.enums;
+package nl.devpieter.falsereality.zz_nums;
 
 import net.minecraft.text.Text;
 

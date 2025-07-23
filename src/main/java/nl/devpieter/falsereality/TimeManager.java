@@ -1,7 +1,7 @@
 package nl.devpieter.falsereality;
 
 import net.minecraft.client.MinecraftClient;
-import nl.devpieter.falsereality.enums.MoonPhase;
+import nl.devpieter.falsereality.zz_nums.MoonPhase;
 import nl.devpieter.falsereality.models.TimeConfig;
 import nl.devpieter.falsereality.models.WorldConfig;
 import nl.devpieter.falsereality.statics.Settings;

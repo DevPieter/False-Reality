@@ -1,6 +1,6 @@
 package nl.devpieter.falsereality.statics;
 
-import nl.devpieter.falsereality.enums.MoonPhase;
+import nl.devpieter.falsereality.zz_nums.MoonPhase;
 import nl.devpieter.falsereality.models.TimeConfig;
 import nl.devpieter.falsereality.setting.TimeConfigSetting;
 import nl.devpieter.falsereality.setting.WorldConfigMapSetting;
