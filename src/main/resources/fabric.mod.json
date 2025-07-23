@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "false_reality",
+  "version": "${version}",
+  "name": "False Reality",
+  "description": "todo",
+  "authors": [
+    "DevPieter"
+  ],
+  "contact": {
+    "homepage": "https://pietr.space/",
+    "sources": "https://github.com/DevPieter/False-Reality",
+    "issues": "https://github.com/DevPieter/False-Reality/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/false_reality/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "nl.devpieter.falsereality.FalseReality"
+    ]
+  },
+  "mixins": [
+    "false_reality.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": ">=${minecraft_version} <=${max_minecraft_version}",
+    "utilize": ">=1.0.11"
+  }
+}

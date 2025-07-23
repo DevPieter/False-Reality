@@ -1,0 +1,73 @@
+plugins {
+    id 'fabric-loom'
+    id 'com.replaymod.preprocess'
+    id 'maven-publish'
+}
+
+def targetJavaVersion = 21
+
+group = maven_group
+archivesBaseName = archives_base_name
+version = "${mod_version}+${minecraft_version}-${max_minecraft_version}"
+
+repositories {
+    maven {
+        name "Pietr Space Releases"
+        url "https://maven.pietr.space/releases"
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+    modImplementation "nl.devpieter:utilize:1.0.11+1.21.2-1.21.4"
+}
+
+preprocess {
+    vars.put("MC", project.mcVersion)
+    vars.put("FABRIC", 1)
+}
+
+processResources {
+    inputs.property "version", project.version
+    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "max_minecraft_version", project.max_minecraft_version
+    inputs.property "loader_version", project.loader_version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version,
+                "minecraft_version": project.minecraft_version,
+                "max_minecraft_version": project.max_minecraft_version,
+                "loader_version": project.loader_version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release.set(targetJavaVersion)
+}
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+    }
+}

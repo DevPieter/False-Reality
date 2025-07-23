@@ -1,0 +1,33 @@
+pluginManagement {
+    repositories {
+        maven {
+            name = 'Fabric'
+            url = 'https://maven.fabricmc.net/'
+        }
+        maven {
+            name = 'Jitpack'
+            url = 'https://jitpack.io'
+        }
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "com.replaymod.preprocess") {
+                useModule("com.github.ReplayMod:preprocessor:${requested.version}")
+            }
+        }
+    }
+}
+
+rootProject.buildFileName = "root.gradle"
+
+var versions = [
+        "1.21.0"
+]
+
+versions.forEach { version ->
+    include(":${version}")
+    project(":${version}").projectDir = file("versions/${version}")
+    project(":${version}").buildFileName = "../../build.gradle"
+}
