@@ -6,6 +6,7 @@
 ![License](https://img.shields.io/github/license/DevPieter/False-Reality?color=blue&label=License&logo=github)
 
 - [Download](#download)
+- [Features](#features)
 - [Description](#description)
 
 ## Download
@@ -17,4 +18,25 @@
 ![Modrinth Version](https://img.shields.io/modrinth/v/cVi2yUQ9?color=blue&label=Version&logo=modrinth)
 ![Modrinth Game Versions](https://img.shields.io/modrinth/game-versions/cVi2yUQ9?color=blue&label=Game%20Versions&logo=modrinth)
 
+## Features
+
+- **Customizable Keybindings**: Change the keybindings for better control.
+- **Per World Configuration**: Configure the time for each world individually.
+- **Global Configuration**: Set a default time for all worlds.
+- **Super Precision**: Adjust the time with super precision, allowing for very small increments.
+- **Mouse Wheel Control**: Use the mouse wheel to adjust the time in various increments.
+- **Fast and Slow Adjustments**: Quickly change the time with fast or slow adjustments.
+
 ## Description
+
+#### Controls with the mouse wheel:
+
+- `Scroll` = **Normal** (increments of `50`)
+- `Scroll + Shift` = **Slow** (increments of `10`)
+- `Scroll + Control` = **Fast** (increments of `100`)
+- `Scroll + Shift + Alt` = **Ultra Slow** (increments of `1`)
+- `Scroll + Control + Alt` = **Ultra Fast** (increments of `200`)
+
+#### Keybindings can be changed in the `Controls` menu:
+
+<img src="https://raw.githubusercontent.com/DevPieter/False-Reality/master/docs/images/1.png?raw=true" width="800" height="275"></picture>
