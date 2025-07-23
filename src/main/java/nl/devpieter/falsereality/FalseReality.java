@@ -3,7 +3,7 @@ package nl.devpieter.falsereality;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.text.Text;
-import nl.devpieter.falsereality.zz_nums.MoonPhase;
+import nl.devpieter.falsereality.enums.MoonPhase;
 import nl.devpieter.falsereality.listeners.GameJoinPacketListener;
 import nl.devpieter.falsereality.models.TimeConfig;
 import nl.devpieter.falsereality.models.WorldConfig;

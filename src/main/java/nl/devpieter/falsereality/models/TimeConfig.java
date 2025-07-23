@@ -1,6 +1,6 @@
 package nl.devpieter.falsereality.models;
 
-import nl.devpieter.falsereality.zz_nums.MoonPhase;
+import nl.devpieter.falsereality.enums.MoonPhase;
 
 public class TimeConfig {
 
