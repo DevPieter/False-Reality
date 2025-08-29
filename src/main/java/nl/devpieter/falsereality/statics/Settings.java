@@ -1,8 +1,12 @@
 package nl.devpieter.falsereality.statics;
 
-import nl.devpieter.falsereality.enums.MoonPhase;
-import nl.devpieter.falsereality.models.TimeConfig;
-import nl.devpieter.falsereality.setting.TimeConfigSetting;
+import nl.devpieter.falsereality.models.PolymorphicValue;
+import nl.devpieter.falsereality.modifiers.StaticTimeModifier;
+import nl.devpieter.falsereality.modifiers.StaticWeatherModifier;
+import nl.devpieter.falsereality.modifiers.abstraction.ITimeModifier;
+import nl.devpieter.falsereality.modifiers.abstraction.IWeatherModifier;
+import nl.devpieter.falsereality.setting.TimeModifierSetting;
+import nl.devpieter.falsereality.setting.WeatherModifierSetting;
 import nl.devpieter.falsereality.setting.WorldConfigMapSetting;
 import nl.devpieter.utilize.setting.SettingManager;
 import nl.devpieter.utilize.setting.interfaces.ISetting;
@@ -17,14 +21,19 @@ public class Settings {
     private static final File CONFIG_FOLDER = new File("config/falsereality");
     private static final File SETTINGS_FILE = new File(CONFIG_FOLDER, "Settings.json");
 
-    public static final TimeConfigSetting GLOBAL_TIME_CONFIG = new TimeConfigSetting(
-            "falsereality.global_time_config",
-            new TimeConfig(0L, MoonPhase.FullMoon)
-    );
-
     public static final WorldConfigMapSetting WORLD_CONFIGS = new WorldConfigMapSetting(
             "falsereality.world_configs",
             new HashMap<>()
+    );
+
+    public static final TimeModifierSetting GLOBAL_TIME_MODIFIER = new TimeModifierSetting(
+            "falsereality.global_time_modifier",
+            new PolymorphicValue<>(new StaticTimeModifier())
+    );
+
+    public static final WeatherModifierSetting GLOBAL_WEATHER_MODIFIER = new WeatherModifierSetting(
+            "falsereality.global_weather_modifier",
+            new PolymorphicValue<>(new StaticWeatherModifier())
     );
 
     public static void load() {
@@ -32,9 +41,13 @@ public class Settings {
 
         SettingManager settingManager = SettingManager.getInstance();
         settingManager.loadSettings(SETTINGS_FILE, List.of(
-                GLOBAL_TIME_CONFIG,
-                WORLD_CONFIGS
+                WORLD_CONFIGS,
+                GLOBAL_TIME_MODIFIER,
+                GLOBAL_WEATHER_MODIFIER
         ));
+
+        GLOBAL_TIME_MODIFIER.getValue().getValue(ITimeModifier.class);
+        GLOBAL_WEATHER_MODIFIER.getValue().getValue(IWeatherModifier.class);
     }
 
     public static void save(ISetting<?> setting) {

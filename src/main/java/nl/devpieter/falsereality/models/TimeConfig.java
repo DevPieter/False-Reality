@@ -4,6 +4,8 @@ import nl.devpieter.falsereality.enums.MoonPhase;
 
 public class TimeConfig {
 
+    private boolean overrideTime;
+
     private long time;
     private MoonPhase moonPhase;
 
@@ -12,12 +14,12 @@ public class TimeConfig {
         this.moonPhase = moonPhase;
     }
 
-    public long getExtraTime() {
-        return this.time + this.moonPhase.getExtraTime();
-    }
-
     public long time() {
         return this.time;
+    }
+
+    public long getExtraTime() {
+        return this.time + this.moonPhase.getExtraTime();
     }
 
     public void setTime(long time) {

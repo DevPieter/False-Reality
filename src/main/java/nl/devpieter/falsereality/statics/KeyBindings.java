@@ -28,6 +28,13 @@ public class KeyBindings {
             "falsereality.category"
     );
 
+    public static final KeyBinding TOGGLE_WEATHER_KEY = new KeyBinding(
+            "falsereality.key.toggle_weather",
+            InputUtil.Type.KEYSYM,
+            GLFW.GLFW_KEY_P,
+            "falsereality.category"
+    );
+
     public static final KeyBinding SCROLL_THROUGH_TIME_KEY = new KeyBinding(
             "falsereality.key.scroll_through_time",
             InputUtil.Type.MOUSE,
@@ -39,6 +46,7 @@ public class KeyBindings {
         KeyBindingHelper.registerKeyBinding(TOGGLE_KEY);
         KeyBindingHelper.registerKeyBinding(TOGGLE_USE_GLOBAL_CONFIG_KEY);
         KeyBindingHelper.registerKeyBinding(CYCLE_MOON_PHASE_KEY);
+        KeyBindingHelper.registerKeyBinding(TOGGLE_WEATHER_KEY);
         KeyBindingHelper.registerKeyBinding(SCROLL_THROUGH_TIME_KEY);
     }
 }

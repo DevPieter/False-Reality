@@ -4,8 +4,8 @@ import net.minecraft.client.Mouse;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 import nl.devpieter.falsereality.TimeManager;
-import nl.devpieter.falsereality.models.TimeConfig;
 import nl.devpieter.falsereality.models.WorldConfig;
+import nl.devpieter.falsereality.modifiers.abstraction.ITimeModifier;
 import nl.devpieter.falsereality.statics.KeyBindings;
 import nl.devpieter.utilize.utils.ClientUtils;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,22 +24,22 @@ public class MouseMixin {
     public void onMouseScroll(long window, double horizontal, double vertical, CallbackInfo ci) {
         if (!KeyBindings.SCROLL_THROUGH_TIME_KEY.isPressed()) return;
 
-        TimeConfig timeConfig = this.timeManager.getCurrentTimeConfig();
-        if (timeConfig == null) return;
+        ITimeModifier modifier = this.timeManager.getTimeModifier();
+        if (modifier == null) return;
 
         boolean ultra = Screen.hasAltDown();
         boolean slow = Screen.hasShiftDown();
         boolean fast = Screen.hasControlDown();
 
-        timeConfig.addTime(this.getCustomTime((long) vertical, slow, fast, ultra));
+        modifier.addTime(this.getCustomTime((long) vertical, slow, fast, ultra));
         timeManager.save();
 
         WorldConfig worldConfig = timeManager.getCurrentWorldConfig();
         if (worldConfig == null) return;
 
         Text message = worldConfig.useGlobalConfig() ?
-                Text.translatable("falsereality.text.global_param", timeConfig.time()) :
-                Text.translatable("falsereality.text.world_param", timeConfig.time());
+                Text.translatable("falsereality.text.global_param", modifier.getTime()) :
+                Text.translatable("falsereality.text.world_param", modifier.getTime());
 
         ClientUtils.getClient().inGameHud.setOverlayMessage(message, false);
         ci.cancel();

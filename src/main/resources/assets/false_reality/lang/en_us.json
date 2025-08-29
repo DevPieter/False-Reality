@@ -7,6 +7,8 @@
   "falsereality.key.scroll_through_time": "Scroll Through Time",
   "falsereality.text.enabled": "Enabled",
   "falsereality.text.disabled": "Disabled",
+  "falsereality.text.raining": "Raining",
+  "falsereality.text.clear": "Clear",
   "falsereality.text.global_config": "Global Config",
   "falsereality.text.world_config": "World Config",
   "falsereality.text.global_param": "Global: %s",
