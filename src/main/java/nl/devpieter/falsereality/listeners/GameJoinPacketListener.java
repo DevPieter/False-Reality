@@ -4,8 +4,9 @@ import net.minecraft.network.packet.s2c.play.GameJoinS2CPacket;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import nl.devpieter.falsereality.TimeManager;
-import nl.devpieter.falsereality.models.TimeConfig;
 import nl.devpieter.falsereality.models.WorldConfig;
+import nl.devpieter.falsereality.modifiers.abstraction.ITimeModifier;
+import nl.devpieter.falsereality.modifiers.abstraction.IWeatherModifier;
 import nl.devpieter.utilize.listeners.packet.IPacketListener;
 import nl.devpieter.utilize.managers.TaskManager;
 import nl.devpieter.utilize.utils.PlayerUtils;
@@ -28,8 +29,14 @@ public class GameJoinPacketListener implements IPacketListener<GameJoinS2CPacket
             WorldConfig worldConfig = timeManager.getCurrentWorldConfig();
             if (worldConfig == null || !worldConfig.isEnabled()) return;
 
-            TimeConfig timeConfig = timeManager.getCurrentTimeConfig();
-            if (timeConfig == null) return;
+            ITimeModifier timeModifier = timeManager.getTimeModifier();
+            if (timeModifier == null) return;
+
+            IWeatherModifier weatherModifier = timeManager.getWeatherModifier();
+            if (weatherModifier == null) return;
+
+            // TODO - re-enable
+//            if (!timeModifier.isEnabled() && !weatherModifier.isEnabled()) return;
 
             Text title = Text.translatable("falsereality.text.false_reality_is", Text.translatable("falsereality.text.enabled"));
             Text description = worldConfig.useGlobalConfig() ? Text.translatable("falsereality.text.using_global_config") : Text.translatable("falsereality.text.using_world_config");

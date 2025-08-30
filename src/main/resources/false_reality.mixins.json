@@ -6,8 +6,12 @@
   "mixins": [
   ],
   "client": [
+    "BackgroundRendererMixin",
     "ClientWorldMixin",
-    "MouseMixin"
+    "ClientWorldPropertiesMixin",
+    "MouseMixin",
+    "WeatherRenderingMixin",
+    "WorldRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
