@@ -15,18 +15,35 @@ public class BackgroundRendererMixin {
     @Unique
     private static final TimeManager timeManager = TimeManager.getInstance();
 
+    //#if MC>=12102
     @Redirect(
-            method = "render",
+            method = "getFogColor",
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
             )
     )
-    private static float renderRedirectGetRainGradient(ClientWorld instance, float delta) {
+    private static float getFogColorRedirectGetRainGradient(ClientWorld instance, float delta) {
         IWeatherModifier weatherModifier = timeManager.getWeatherModifier();
         if (weatherModifier == null || !weatherModifier.isEnabled()) return instance.getRainGradient(delta);
 
         float original = instance.getRainGradient(delta);
         return weatherModifier.getModifiedRainGradient(delta, original);
     }
+    //#else
+    //$$
+    //$$ @Redirect(
+    //$$         method = "render",
+    //$$         at = @At(
+    //$$                 value = "INVOKE",
+    //$$                 target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
+    //$$         )
+    //$$ )
+    //$$ private static float renderRedirectGetRainGradient(ClientWorld instance, float delta) {
+    //$$     IWeatherModifier weatherModifier = timeManager.getWeatherModifier();
+    //$$     if (weatherModifier == null || !weatherModifier.isEnabled()) return instance.getRainGradient(delta);
+    //$$
+    //$$     float original = instance.getRainGradient(delta);
+    //$$     return weatherModifier.getModifiedRainGradient(delta, original);
+    //$$ }
 }

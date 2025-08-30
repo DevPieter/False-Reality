@@ -29,6 +29,8 @@ You can download False Reality on Modrinth: [Download False Reality](https://mod
 - **Per World Configuration**: Configure the time for each world individually.
 - **Global Configuration**: Set a default time for all worlds.
 - **Fine-Grained Time Control**: Adjust the time with super precision, allowing for very small increments.
+- **Moon Phase Control**: Change the moon phase to suit your needs.
+- **Weather Control**: Let it rain whenever you want.
 - **Mouse Wheel Control**: Use the mouse wheel to adjust the time in various increments.
 
 ## Description
@@ -53,4 +55,7 @@ False Reality lets you take full control over the Minecraft client-side time, ad
 - [x] Add global time settings
 - [x] Save time settings per world
 - [x] Add moon phase control
-- [ ] Add weather control
+- [x] Add weather control
+- [ ] Add Sky control (color, clouds, stars)
+- [ ] Add more customization options
+- [ ] Add GUI for easier configuration

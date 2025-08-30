@@ -10,6 +10,7 @@
     "ClientWorldMixin",
     "ClientWorldPropertiesMixin",
     "MouseMixin",
+    "WeatherRenderingMixin",
     "WorldRendererMixin"
   ],
   "injectors": {

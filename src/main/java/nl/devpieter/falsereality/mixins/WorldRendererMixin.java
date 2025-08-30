@@ -6,8 +6,6 @@ import nl.devpieter.falsereality.TimeManager;
 import nl.devpieter.falsereality.modifiers.abstraction.IWeatherModifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(WorldRenderer.class)
 public class WorldRendererMixin {
@@ -15,38 +13,52 @@ public class WorldRendererMixin {
     @Unique
     private final TimeManager timeManager = TimeManager.getInstance();
 
-    @Redirect(
-            method = "renderWeather",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
-            )
-    )
-    private float renderWeatherRedirectGetRainGradient(ClientWorld instance, float delta) {
-        return getOverrideRainGradient(instance, delta);
-    }
-
-    @Redirect(
-            method = "tickRainSplashing",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
-            )
-    )
-    private float tickRainSplashingRedirectGetRainGradient(ClientWorld instance, float delta) {
-        return getOverrideRainGradient(instance, delta);
-    }
-
-    @Redirect(
-            method = "renderSky",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
-            )
-    )
-    private float renderSkyRedirectGetRainGradient(ClientWorld instance, float delta) {
-        return getOverrideRainGradient(instance, delta);
-    }
+    //#if MC>=12102
+    //    @Redirect(
+    //            method = "renderSky",
+    //            at = @At(
+    //                    value = "INVOKE",
+    //                    target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
+    //            )
+    //    )
+    //    private float redirectGetRainGradient(ClientWorld instance, float delta) {
+    //        return getOverrideRainGradient(instance, delta);
+    //    }
+    //#else
+    //$$ @Redirect(
+    //$$         method = "renderWeather",
+    //$$         at = @At(
+    //$$                 value = "INVOKE",
+    //$$                 target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
+    //$$         )
+    //$$ )
+    //$$ private float renderWeatherRedirectGetRainGradient(ClientWorld instance, float delta) {
+    //$$     return getOverrideRainGradient(instance, delta);
+    //$$ }
+    //$$
+    //$$ @Redirect(
+    //$$         method = "tickRainSplashing",
+    //$$         at = @At(
+    //$$                 value = "INVOKE",
+    //$$                 target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
+    //$$         )
+    //$$ )
+    //$$ private float tickRainSplashingRedirectGetRainGradient(ClientWorld instance, float delta) {
+    //$$     return getOverrideRainGradient(instance, delta);
+    //$$ }
+    //$$
+    //$$ @Redirect(
+    //$$         method = "renderSky",
+    //$$         at = @At(
+    //$$                 value = "INVOKE",
+    //$$                 target = "Lnet/minecraft/client/world/ClientWorld;getRainGradient(F)F"
+    //$$         )
+    //$$ )
+    //$$ private float renderSkyRedirectGetRainGradient(ClientWorld instance, float delta) {
+    //$$     return getOverrideRainGradient(instance, delta);
+    //$$ }
+    //$$
+    //#endif
 
     @Unique
     private float getOverrideRainGradient(ClientWorld instance, float delta) {

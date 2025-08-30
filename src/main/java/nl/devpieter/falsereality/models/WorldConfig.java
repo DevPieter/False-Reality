@@ -10,8 +10,8 @@ public class WorldConfig {
     private boolean isEnabled;
     private boolean useGlobalConfig;
 
-    private final PolymorphicValue<ITimeModifier> timeModifier;
-    private final PolymorphicValue<IWeatherModifier> weatherModifier;
+    private PolymorphicValue<ITimeModifier> timeModifier;
+    private PolymorphicValue<IWeatherModifier> weatherModifier;
 
     public WorldConfig(boolean isEnabled, boolean useGlobalConfig) {
         this.isEnabled = isEnabled;
@@ -37,14 +37,6 @@ public class WorldConfig {
         this.useGlobalConfig = useGlobalConfig;
     }
 
-//    public ITimeModifier getTimeModifier() {
-//        return timeModifier.getValue(ITimeModifier.class);
-//    }
-//
-//    public IWeatherModifier getWeatherModifier() {
-//        return weatherModifier.getValue(IWeatherModifier.class);
-//    }
-
     public PolymorphicValue<ITimeModifier> getTimeModifier() {
         return timeModifier;
     }
@@ -54,7 +46,10 @@ public class WorldConfig {
     }
 
     public void sync() {
-        timeModifier.sync();
-        weatherModifier.sync();
+        if (timeModifier != null) timeModifier.sync();
+        else timeModifier = new PolymorphicValue<>(new StaticTimeModifier());
+
+        if (weatherModifier != null) weatherModifier.sync();
+        else weatherModifier = new PolymorphicValue<>(new StaticWeatherModifier());
     }
 }
