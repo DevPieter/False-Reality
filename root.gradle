@@ -4,8 +4,12 @@ plugins {
 }
 
 preprocess {
-    def mc12100 = createNode('1.21.0', 12100, "yarn")
+    def mc12106 = createNode('1.21.6', 12106, "yarn")
+    def mc12104 = createNode('1.21.4', 12104, "yarn")
     def mc12102 = createNode('1.21.2', 12102, "yarn")
+    def mc12100 = createNode('1.21.0', 12100, "yarn")
 
+    mc12106.link(mc12104, null)
+    mc12104.link(mc12102, null)
     mc12102.link(mc12100, null)
 }

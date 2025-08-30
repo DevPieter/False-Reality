@@ -38,10 +38,18 @@ public class WorldConfig {
     }
 
     public PolymorphicValue<ITimeModifier> getTimeModifier() {
+        if (timeModifier == null) {
+            timeModifier = new PolymorphicValue<>(new StaticTimeModifier());
+        }
+
         return timeModifier;
     }
 
     public PolymorphicValue<IWeatherModifier> getWeatherModifier() {
+        if (weatherModifier == null) {
+            weatherModifier = new PolymorphicValue<>(new StaticWeatherModifier());
+        }
+
         return weatherModifier;
     }
 

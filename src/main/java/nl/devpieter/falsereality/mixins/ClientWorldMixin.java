@@ -47,8 +47,11 @@ public class ClientWorldMixin {
         return getOverrideRainGradient(instance, delta);
     }
 
+    // TODO - Prevent code duplication, move to a util class
     @Unique
     private float getOverrideRainGradient(ClientWorld instance, float delta) {
+        if (!timeManager.getCurrentWorldConfig().isEnabled()) return instance.getRainGradient(delta);
+
         IWeatherModifier modifier = timeManager.getWeatherModifier();
         if (modifier == null || !modifier.isEnabled()) return instance.getRainGradient(delta);
 
